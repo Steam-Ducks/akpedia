@@ -1,0 +1,6 @@
+[submodule "akpedia-client"]
+	path = akpedia-client
+	url = https://github.com/Steam-Ducks/akpedia-client.git
+[submodule "akpedia-server"]
+	path = akpedia-server
+	url = https://github.com/Steam-Ducks/akpedia-server.git
