@@ -4,3 +4,6 @@
 [submodule "akpedia-server"]
 	path = akpedia-server
 	url = https://github.com/Steam-Ducks/akpedia-server.git
+[submodule "akpedia-ml"]
+	path = akpedia-ml
+	url = https://github.com/Steam-Ducks/akpedia-ml
