@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Repo CLI, symlinked onto PATH as `akpedia` by .devcontainer/entrypoint.sh.
+# Each command is implemented in its own script; this file only dispatches.
+set -uo pipefail
+
+script="$(readlink -f "${BASH_SOURCE[0]}")"
+scripts_dir="$(dirname "$script")"
+
+cmd="${1:-}"
+[ $# -gt 0 ] && shift
+
+case "$cmd" in
+  run)
+    exec "$scripts_dir/dev.sh" "$@"
+    ;;
+  branch)
+    exec "$scripts_dir/branch.sh" "$@"
+    ;;
+  commit)
+    exec "$scripts_dir/commit.sh" "$@"
+    ;;
+  *)
+    echo "usage: akpedia <command>" >&2
+    echo "commands:" >&2
+    echo "  run [module...]        start dev servers (server, ml, client; default: all three)" >&2
+    echo "  branch <number>        create (if needed) and checkout AKP-<number>" >&2
+    echo "  commit <type> <msg>    commit as '<type>(<branch>): <msg>'" >&2
+    exit 1
+    ;;
+esac
