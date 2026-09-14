@@ -1,0 +1,39 @@
+{
+  "name": "akpedia",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "..",
+    "options": ["-t", "akpedia-devcontainer:latest"]
+  },
+  "runArgs": ["--name", "akpedia-devcontainer", "-p", "5173:5173"],
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+    "source=akpedia-mise-data,target=/root/.local/share/mise,type=volume",
+    "source=akpedia-m2,target=/root/.m2,type=volume",
+    "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind"
+  ],
+  "containerEnv": {
+    "DB_URL": "jdbc:postgresql://akpedia-db:5432/akpedia",
+    "JDK_JAVA_OPTIONS": "-XX:-UseContainerSupport"
+  },
+  "postCreateCommand": "bash .devcontainer/entrypoint.sh",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      },
+      "extensions": [
+        "Vue.volar",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-boot-dev-pack",
+        "ms-python.python",
+        "charliermarsh.ruff",
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+        "tamasfe.even-better-toml"
+      ]
+    }
+  }
+}

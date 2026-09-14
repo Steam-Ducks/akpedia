@@ -1,9 +1,9 @@
 [submodule "akpedia-client"]
 	path = akpedia-client
-	url = https://github.com/Steam-Ducks/akpedia-client.git
+	url = git@github.com:Steam-Ducks/akpedia-client.git
 [submodule "akpedia-server"]
 	path = akpedia-server
-	url = https://github.com/Steam-Ducks/akpedia-server.git
+	url = git@github.com:Steam-Ducks/akpedia-server.git
 [submodule "akpedia-ml"]
 	path = akpedia-ml
-	url = https://github.com/Steam-Ducks/akpedia-ml
+	url = git@github.com:Steam-Ducks/akpedia-ml.git
