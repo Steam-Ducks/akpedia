@@ -3,11 +3,11 @@ set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
-docker compose -f akpedia-server/docker-compose.yml up -d db
+docker compose -f akpedia-server/docker-compose.yml up -d db gotenberg
 
-# Join the db's compose network so we can reach it by container name (we're
-# a sibling container to it via the mounted docker.sock, not a parent/child,
-# so "localhost" doesn't route to it).
+# Join the db/gotenberg compose network so we can reach them by container
+# name (we're a sibling container to them via the mounted docker.sock, not a
+# parent/child, so "localhost" doesn't route to them).
 db_network="$(docker inspect akpedia-db --format '{{range $k, $v := .NetworkSettings.Networks}}{{$k}}{{end}}')"
 docker network connect "$db_network" akpedia-devcontainer 2>/dev/null || true
 
