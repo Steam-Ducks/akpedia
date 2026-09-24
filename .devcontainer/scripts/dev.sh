@@ -20,7 +20,7 @@ run() {
 }
 
 start_server() { run server 34 akpedia-server ./mvnw spring-boot:run; }
-start_ml()     { run ml     35 akpedia-ml     uv run uvicorn app.main:app --reload --port "${APP_PORT:-8000}"; }
+start_ml()     { run ml     35 akpedia-ml     uv run uvicorn app.main:app --reload --host 0.0.0.0 --port "${APP_PORT:-8000}"; }
 start_client() { run client 36 akpedia-client npm run dev; }
 
 modules=("$@")

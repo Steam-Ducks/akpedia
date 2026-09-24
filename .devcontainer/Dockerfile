@@ -12,10 +12,10 @@ RUN apt install -y docker.io docker-compose-v2
 ENV SHELL=zsh
 
 # Configure Locales
-RUN apt-get install -y locales locales-all
-ENV LC_ALL en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US.UTF-8
+RUN apt-get update && apt-get install -y locales locales-all
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
 WORKDIR /root
 
@@ -32,4 +32,4 @@ RUN curl https://mise.run | sh
 ENV PATH="/root/.local/bin:/root/.local/share/mise/shims:${PATH}"
 RUN echo 'eval "$(mise activate zsh)"' >> .zshrc
 
-CMD /bin/zsh
+CMD ["/bin/zsh"]
