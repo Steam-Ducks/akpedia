@@ -22,8 +22,8 @@ docker network connect "$db_network" akpedia-devcontainer 2>/dev/null || true
 corepack enable
 corepack prepare pnpm@latest --activate
 
-chmod +x .devcontainer/scripts/akpedia .devcontainer/scripts/dev.sh .devcontainer/scripts/branch.sh .devcontainer/scripts/commit.sh
-ln -sf "$(pwd)/.devcontainer/scripts/akpedia" /usr/local/bin/akpedia
+chmod +x .devcontainer/scripts/akpedia .devcontainer/scripts/dev.sh .devcontainer/scripts/branch.sh .devcontainer/scripts/commit.sh .devcontainer/scripts/seed.sh
+sudo ln -sf "$(pwd)/.devcontainer/scripts/akpedia" /usr/local/bin/akpedia
 
 completion_line="source \"$(pwd)/.devcontainer/scripts/akpedia-completion.zsh\""
 grep -qxF "$completion_line" ~/.zshrc || echo "$completion_line" >> ~/.zshrc
