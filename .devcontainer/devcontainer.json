@@ -8,15 +8,18 @@
   "runArgs": ["--name", "akpedia-devcontainer", "-p", "5173:5173", "-p", "8080:8080", "-p", "8000:8000"],
   "mounts": [
     "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
-    "source=akpedia-mise-data,target=/root/.local/share/mise,type=volume",
-    "source=akpedia-m2,target=/root/.m2,type=volume",
-    "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind"
+    "source=akpedia-mise-data,target=/home/ubuntu/.local/share/mise,type=volume",
+    "source=akpedia-m2,target=/home/ubuntu/.m2,type=volume",
+    "source=${localEnv:HOME}/.gitconfig,target=/home/ubuntu/.gitconfig,type=bind"
   ],
   "containerEnv": {
     "DB_URL": "jdbc:postgresql://akpedia-db:5432/akpedia",
     "GOTENBERG_BASE_URL": "http://akpedia-gotenberg:3000",
     "JDK_JAVA_OPTIONS": "-XX:-UseContainerSupport"
   },
+  "remoteUser": "ubuntu",
+  "updateRemoteUserUID": true,
+  "onCreateCommand": "bash .devcontainer/setup-permissions.sh",
   "postCreateCommand": "bash .devcontainer/entrypoint.sh",
   "postStartCommand": "docker compose -f akpedia-server/docker-compose.yml up -d db gotenberg",
   "customizations": {
