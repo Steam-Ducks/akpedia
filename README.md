@@ -79,27 +79,26 @@ To protect sensitive data and provide relevant search experiences, this sprint i
 
 Priority aligns with sprint progression: **High** validates search usability, **Medium** connects real document databases via AI support, and **Low** enforces secure, department-based access control (placed last as it depends on the first two working properly). [Access our full documentation.](https://thesteamducks.atlassian.net/wiki/external/YzdlN2UzNzhmNjNjNDJlZmFkZmJhNzFjMzM4M2NhYTE)
 
-| Priority | Sprint | Epic   | ID     | User Story                                                         | Role                        |
-|----------|--------|--------|--------|-----------------------------------------------------------------------|------------------------------|
-| High     | 1      | Epic 1 | US 1.1 | Search documents in a single place as soon as I open the system       | Standard User     |
-| High     | 1      | Epic 1 | US 1.2 | Quickly determine which search result is correct                      | Standard User     |
-| Medium   | 2      | Epic 2 | US 2.1 | Avoid reading an entire document to determine its category            | Approver                     |
-| Medium   | 2      | Epic 2 | US 2.2 | View everything pending my review in one place                        | Approver                     |
-| Medium   | 2      | Epic 2 | US 2.3 | Approve documents with confidence, ensuring a reliable database       | Approver                     |
-| Medium   | 2      | Epic 2 | US 2.4 | Share a new document with my colleagues                               | Standard User     |
-| Medium   | 2      | Epic 2 | US 2.5 | Know whether my uploaded document is available to colleagues          | Standard User     |
-| Medium   | 2      | Epic 2 | US 2.6 | Refine my search to find exactly what I need                          | Standard User     |
-| Low      | 3      | Epic 3 | US 3.1 | Ensure sensitive department documents remain protected                | All Roles (Employee)         |
-| Low      | 3      | Epic 3 | US 3.2 | Maintain company compliance regarding employee access data            | Administrator                |
-| Low      | 3      | Epic 3 | US 3.3 | Define permissions for each employee in the system                    | Administrator                |
-| Low      | 3      | Epic 3 | US 3.4 | View only documents relevant and permitted for my department          | Standard User     |
-| Low      | 3      | Epic 3 | US 3.5 | Keep department structures and user details updated                   | Administrator                |
-
+| Priority | Sprint | Epic   | ID     | User Story                                                             | Role                  | Status         |
+|----------|--------|--------|--------|-------------------------------------------------------------------------|------------------------|----------------|
+| High     | 1      | Epic 1 | US 1.1 | Search documents in a single place as soon as I open the system         | Standard User          | ✅ Done        |
+| High     | 1      | Epic 1 | US 1.2 | Quickly determine which search result is correct                        | Standard User          | ✅ Done        |
+| Medium   | 2      | Epic 2 | US 2.1 | Avoid reading an entire document to determine its category              | Approver                | ⚪ To Do       |
+| Medium   | 2      | Epic 2 | US 2.2 | View everything pending my review in one place                          | Approver                | ⚪ To Do       |
+| Medium   | 2      | Epic 2 | US 2.3 | Approve documents with confidence, ensuring a reliable database         | Approver                | ⚪ To Do       |
+| Medium   | 2      | Epic 2 | US 2.4 | Share a new document with my colleagues                                 | Standard User          | ⚪ To Do       |
+| Medium   | 2      | Epic 2 | US 2.5 | Know whether my uploaded document is available to colleagues            | Standard User          | ⚪ To Do       |
+| Medium   | 2      | Epic 2 | US 2.6 | Refine my search to find exactly what I need                            | Standard User          | ⚪ To Do       |
+| Low      | 3      | Epic 3 | US 3.1 | Ensure sensitive department documents remain protected                  | All Roles (Employee)   | ⚪ To Do       |
+| Low      | 3      | Epic 3 | US 3.2 | Maintain company compliance regarding employee access data              | Administrator           | ⚪ To Do       |
+| Low      | 3      | Epic 3 | US 3.3 | Define permissions for each employee in the system                      | Administrator           | ⚪ To Do       |
+| Low      | 3      | Epic 3 | US 3.4 | View only documents relevant and permitted for my department            | Standard User          | ⚪ To Do       |
+| Low      | 3      | Epic 3 | US 3.5 | Keep department structures and user details updated                     | Administrator           | ⚪ To Do       |
 ## Tech Stack
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=python,vue,ts,docker,git,github,githubactions,vscode&theme=light" />
+    <img src="https://skillicons.dev/icons?i=python,vue,java,ts,docker,git,github,githubactions,vscode&theme=light" />
   </a>
 </p>
 
