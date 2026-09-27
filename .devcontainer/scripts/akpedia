@@ -19,12 +19,16 @@ case "$cmd" in
   commit)
     exec "$scripts_dir/commit.sh" "$@"
     ;;
+  seed)
+    exec "$scripts_dir/seed.sh" "$@"
+    ;;
   *)
     echo "usage: akpedia <command>" >&2
     echo "commands:" >&2
     echo "  run [module...]        start dev servers (server, ml, client; default: all three)" >&2
     echo "  branch <number>        create (if needed) and checkout AKP-<number>" >&2
     echo "  commit <type> <msg>    commit as '<type>(<branch>): <msg>'" >&2
+    echo "  seed [file|dir...]     upload documents (default: download sample ones)" >&2
     exit 1
     ;;
 esac

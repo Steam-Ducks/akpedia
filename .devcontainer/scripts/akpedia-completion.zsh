@@ -4,6 +4,7 @@ _akpedia() {
     'run:start dev servers'
     'branch:create (if needed) and checkout AKP-<number>'
     'commit:commit as type(AKP-<number>): message'
+    'seed:upload documents (default: download sample ones)'
   )
   modules=('server:Spring Boot API' 'ml:FastAPI ML service' 'client:Vue frontend')
   types=(
@@ -20,6 +21,7 @@ _akpedia() {
   case "${words[2]}" in
     run) _describe 'module' modules ;;
     commit) (( CURRENT == 3 )) && _describe 'type' types ;;
+    seed) _files ;;
   esac
 }
 
