@@ -6,7 +6,7 @@ _akpedia() {
     'commit:commit as type(AKP-<number>): message'
     'seed:upload documents (default: download sample ones)'
   )
-  modules=('server:Spring Boot API' 'ml:FastAPI ML service' 'client:Vue frontend')
+  modules=('server:Spring Boot API' 'ml:FastAPI ML service and indexing worker' 'client:Vue frontend')
   types=(
     'feat:new feature' 'fix:bug fix' 'docs:documentation' 'style:formatting'
     'refactor:code change without behavior change' 'perf:performance improvement'
