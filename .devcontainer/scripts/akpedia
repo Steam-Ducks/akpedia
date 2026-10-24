@@ -25,7 +25,7 @@ case "$cmd" in
   *)
     echo "usage: akpedia <command>" >&2
     echo "commands:" >&2
-    echo "  run [module...]        start dev servers (server, ml, client; default: all three)" >&2
+    echo "  run [module...]        start dev servers (server, ml + worker, client; default: all)" >&2
     echo "  branch <number>        create (if needed) and checkout AKP-<number>" >&2
     echo "  commit <type> <msg>    commit as '<type>(<branch>): <msg>'" >&2
     echo "  seed [file|dir...]     upload documents (default: download sample ones)" >&2

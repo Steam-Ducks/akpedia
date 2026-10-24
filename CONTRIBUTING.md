@@ -32,11 +32,13 @@ Abra a pasta no VS Code e rode **Dev Containers: Reopen in Container** (`Ctrl/Cm
 ## Rodando os serviços
 
 ```
-akpedia run              # server (:8080) + ml (:8000) + client (:5173)
+akpedia run              # server (:8080) + ml (:8000) e worker + client (:5173)
 akpedia run server ml    # só os que você quiser
 ```
 
-A saída é colorida e prefixada por serviço (`[server]`, `[ml]`, `[client]`); `Ctrl+C` encerra tudo. Autocomplete funciona: `akpedia <TAB>`, `akpedia run <TAB>`.
+A saída é colorida e prefixada por serviço (`[server]`, `[ml]`, `[worker]`, `[client]`); `Ctrl+C` encerra tudo. Autocomplete funciona: `akpedia <TAB>`, `akpedia run <TAB>`.
+
+O `ml` sobe a API e o worker de indexação, que pega os documentos aprovados da fila no Redis e os prepara para a busca. O worker espera o server responder antes de começar. Server e worker recebem o mesmo `INTERNAL_API_TOKEN` (`akpedia-dev-internal-token`, a não ser que você defina outro).
 
 As dependências do client não são instaladas automaticamente — rode isso uma vez (ou depois de mudanças no `package.json`):
 
