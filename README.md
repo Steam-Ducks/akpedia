@@ -94,6 +94,16 @@ Priority aligns with sprint progression: **High** validates search usability, **
 | Low      | 3      | Epic 3 | US 3.3 | Define permissions for each employee in the system                      | Administrator           | ⚪ To Do       |
 | Low      | 3      | Epic 3 | US 3.4 | View only documents relevant and permitted for my department            | Standard User          | ⚪ To Do       |
 | Low      | 3      | Epic 3 | US 3.5 | Keep department structures and user details updated                     | Administrator           | ⚪ To Do       |
+
+## Project Demo
+
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=qHbBRwY2Ly0" target="_blank">
+    <img src="https://img.youtube.com/vi/qHbBRwY2Ly0/maxresdefault.jpg" alt="Akpedia Demo" width="80%" />
+  </a>
+  <p><em>Clique na imagem para assistir à demonstração no YouTube.</em></p>
+</div>
+
 ## Tech Stack
 
 <p align="center">
