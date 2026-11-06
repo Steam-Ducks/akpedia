@@ -13,6 +13,10 @@ trap 'kill -- -$$ 2>/dev/null' EXIT INT TERM
 # from here, so it only has to be set to override this development value.
 export INTERNAL_API_TOKEN="${INTERNAL_API_TOKEN:-akpedia-dev-internal-token}"
 
+# The server checks the login tokens against Keycloak's keys. It reaches Keycloak by container
+# name, while the tokens keep naming the public URL (localhost:8180) as their issuer.
+export KEYCLOAK_JWK_SET_URI="${KEYCLOAK_JWK_SET_URI:-http://akpedia-keycloak:8080/realms/akpedia/protocol/openid-connect/certs}"
+
 run() {
   local name="$1" color="$2" dir="$3"
   shift 3
