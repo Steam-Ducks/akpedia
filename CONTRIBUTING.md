@@ -40,6 +40,15 @@ A saída é colorida e prefixada por serviço (`[server]`, `[ml]`, `[worker]`, `
 
 O `ml` sobe a API e o worker de indexação, que pega os documentos aprovados da fila no Redis e os prepara para a busca. O worker espera o server responder antes de começar. Server e worker recebem o mesmo `INTERNAL_API_TOKEN` (`akpedia-dev-internal-token`, a não ser que você defina outro).
 
+O Keycloak (login e cadastro) sobe junto com o Postgres, o Redis e o Gotenberg sempre que o container inicia, em `http://localhost:8180` (console de administração em `/admin`, `admin` / `admin`). Ele precisa do `akpedia-server/.env` com o `KEYCLOAK_DEV_ADMIN_PASSWORD` preenchido; sem isso, só ele não sobe. Crie o arquivo uma vez:
+
+```
+cp akpedia-server/.env.example akpedia-server/.env   # e preencha KEYCLOAK_DEV_ADMIN_PASSWORD
+docker compose -f akpedia-server/docker-compose.yml up -d keycloak
+```
+
+Esse é o usuário `ADMIN` inicial do app (`admin@akpedia.local`). O `akpedia run` já aponta o server para o Keycloak, que confere o login em toda rota da API. Detalhes do realm no README do `akpedia-server`, em "Autenticação (Keycloak)".
+
 As dependências do client não são instaladas automaticamente — rode isso uma vez (ou depois de mudanças no `package.json`):
 
 ```
