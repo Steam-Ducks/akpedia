@@ -16,13 +16,14 @@
     "DB_URL": "jdbc:postgresql://akpedia-db:5432/akpedia",
     "GOTENBERG_BASE_URL": "http://akpedia-gotenberg:3000",
     "REDIS_HOST": "akpedia-redis",
+    "LLM_BASE_URL": "http://akpedia-ollama:11434",
     "JDK_JAVA_OPTIONS": "-XX:-UseContainerSupport"
   },
   "remoteUser": "ubuntu",
   "updateRemoteUserUID": true,
   "onCreateCommand": "bash .devcontainer/setup-permissions.sh",
   "postCreateCommand": "bash .devcontainer/entrypoint.sh",
-  "postStartCommand": "docker compose -f akpedia-server/docker-compose.yml up -d db gotenberg redis keycloak nginx",
+  "postStartCommand": "docker compose -f akpedia-server/docker-compose.yml up -d db gotenberg redis keycloak nginx && docker compose -f akpedia-ml/docker-compose.yml up -d ollama && (docker network connect \"$(docker inspect akpedia-ollama --format '{{range $k, $v := .NetworkSettings.Networks}}{{$k}}{{end}}')\" akpedia-devcontainer 2>/dev/null || true)",
   "customizations": {
     "vscode": {
       "settings": {

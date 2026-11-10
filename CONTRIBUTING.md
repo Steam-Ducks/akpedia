@@ -49,6 +49,8 @@ docker compose -f akpedia-server/docker-compose.yml up -d keycloak nginx
 
 Esse é o usuário `ADMIN` inicial do app (`admin@akpedia.local`). O `akpedia run` já aponta o server para o Keycloak, que confere o login em toda rota da API. Detalhes do realm no README do `akpedia-server`, em "Autenticação (Keycloak)".
 
+O `ml` usa um LLM local (Ollama, container `akpedia-ollama`), porque os documentos são sensíveis e não podem sair da máquina. O devcontainer sobe esse container ao iniciar e aponta `LLM_BASE_URL` para ele. Na primeira vez, `akpedia run ml` baixa o modelo (`qwen2.5:3b-instruct`, ~2 GB) para o volume `ollama-models`; nas seguintes ele já está lá. Para usar outro modelo, defina `LLM_MODEL`.
+
 As dependências do client não são instaladas automaticamente — rode isso uma vez (ou depois de mudanças no `package.json`):
 
 ```
