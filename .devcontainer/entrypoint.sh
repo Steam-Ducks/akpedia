@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
-docker compose -f akpedia-server/docker-compose.yml up -d db gotenberg redis
+docker compose -f akpedia-server/docker-compose.yml up -d db gotenberg redis keycloak nginx
 
 # Join the db/gotenberg/redis compose network so we can reach them by container
 # name (we're a sibling container to them via the mounted docker.sock, not a
@@ -11,7 +11,7 @@ docker compose -f akpedia-server/docker-compose.yml up -d db gotenberg redis
 db_network="$(docker inspect akpedia-db --format '{{range $k, $v := .NetworkSettings.Networks}}{{$k}}{{end}}')"
 docker network connect "$db_network" akpedia-devcontainer 2>/dev/null || true
 
-# LLM local do ml (Ollama): sobe pelo compose do akpedia-ml e entra na rede dele, como o db.
+# The ml's local LLM (Ollama): start it from akpedia-ml's compose and join its network, like the db.
 docker compose -f akpedia-ml/docker-compose.yml up -d ollama
 ollama_network="$(docker inspect akpedia-ollama --format '{{range $k, $v := .NetworkSettings.Networks}}{{$k}}{{end}}')"
 docker network connect "$ollama_network" akpedia-devcontainer 2>/dev/null || true
