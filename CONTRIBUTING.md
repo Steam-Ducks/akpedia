@@ -40,6 +40,8 @@ A saída é colorida e prefixada por serviço (`[server]`, `[ml]`, `[worker]`, `
 
 O `ml` sobe a API e o worker de indexação, que pega os documentos aprovados da fila no Redis e os prepara para a busca. O worker espera o server responder antes de começar. Server e worker recebem o mesmo `INTERNAL_API_TOKEN` (`akpedia-dev-internal-token`, a não ser que você defina outro).
 
+O `ml` usa um LLM local (Ollama, container `akpedia-ollama`), porque os documentos são sensíveis e não podem sair da máquina. O devcontainer sobe esse container ao iniciar e aponta `LLM_BASE_URL` para ele. Na primeira vez, `akpedia run ml` baixa o modelo (`qwen2.5:3b-instruct`, ~2 GB) para o volume `ollama-models`; nas seguintes ele já está lá. Para usar outro modelo, defina `LLM_MODEL`.
+
 As dependências do client não são instaladas automaticamente — rode isso uma vez (ou depois de mudanças no `package.json`):
 
 ```

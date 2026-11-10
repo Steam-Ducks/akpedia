@@ -34,6 +34,14 @@ wait_for_server() {
   done
 }
 
+# Pulls the local LLM into the Ollama volume once; later runs find it and skip this.
+ensure_llm_model() {
+  local model="${LLM_MODEL:-qwen2.5:3b-instruct}"
+  docker exec akpedia-ollama ollama list | grep -q "$model" && return 0
+  echo "pulling LLM model $model (~2 GB, only once)"
+  docker exec akpedia-ollama ollama pull "$model"
+}
+
 start_server() { run server 34 akpedia-server ./mvnw spring-boot:run; }
 start_ml()     { run ml     35 akpedia-ml     uv run uvicorn app.main:app --reload --host 0.0.0.0 --port "${APP_PORT:-8000}"; }
 # Indexes approved documents; part of `ml`. Redis is reached by container name, as the server
@@ -64,6 +72,7 @@ for m in "${modules[@]}"; do
   case "$m" in
     server) start_server ;;
     ml)
+      ensure_llm_model || echo "could not pull the LLM model; is akpedia-ollama running?" >&2
       start_ml
       start_worker
       ;;
