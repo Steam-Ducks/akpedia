@@ -23,7 +23,7 @@
   "updateRemoteUserUID": true,
   "onCreateCommand": "bash .devcontainer/setup-permissions.sh",
   "postCreateCommand": "bash .devcontainer/entrypoint.sh",
-  "postStartCommand": "docker compose -f akpedia-server/docker-compose.yml up -d db gotenberg redis keycloak nginx && docker compose -f akpedia-ml/docker-compose.yml up -d ollama && (docker network connect \"$(docker inspect akpedia-ollama --format '{{range $k, $v := .NetworkSettings.Networks}}{{$k}}{{end}}')\" akpedia-devcontainer 2>/dev/null || true)",
+  "postStartCommand": "docker compose -f akpedia-server/docker-compose.yml up -d db gotenberg redis keycloak nginx mailpit && docker compose -f akpedia-ml/docker-compose.yml up -d ollama && (docker network connect \"$(docker inspect akpedia-ollama --format '{{range $k, $v := .NetworkSettings.Networks}}{{$k}}{{end}}')\" akpedia-devcontainer 2>/dev/null || true)",
   "customizations": {
     "vscode": {
       "settings": {
