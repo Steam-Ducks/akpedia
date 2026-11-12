@@ -13,6 +13,13 @@ trap 'kill -- -$$ 2>/dev/null' EXIT INT TERM
 # from here, so it only has to be set to override this development value.
 export INTERNAL_API_TOKEN="${INTERNAL_API_TOKEN:-akpedia-dev-internal-token}"
 
+# The server checks the login tokens against Keycloak's keys. It reaches Keycloak by container
+# name, while the tokens keep naming the public URL (http://localhost/auth, through nginx) as
+# their issuer.
+export KEYCLOAK_JWK_SET_URI="${KEYCLOAK_JWK_SET_URI:-http://akpedia-keycloak:8080/auth/realms/akpedia/protocol/openid-connect/certs}"
+# The admin's users screen calls Keycloak's Admin API the same way, by container name.
+export KEYCLOAK_ADMIN_BASE_URL="${KEYCLOAK_ADMIN_BASE_URL:-http://akpedia-keycloak:8080/auth}"
+
 # The server sends e-mail through the compose's Mailpit (http://localhost:8025), reached by
 # container name; its own default, localhost, is the dev container itself.
 export MAIL_HOST="${MAIL_HOST:-akpedia-mailpit}"
@@ -36,6 +43,14 @@ wait_for_server() {
     [ -z "$said" ] && echo "waiting for the server at $url" && said=1
     sleep 2
   done
+}
+
+# Pulls the local LLM into the Ollama volume once; later runs find it and skip this.
+ensure_llm_model() {
+  local model="${LLM_MODEL:-qwen2.5:3b-instruct}"
+  docker exec akpedia-ollama ollama list | grep -q "$model" && return 0
+  echo "pulling LLM model $model (~2 GB, only once)"
+  docker exec akpedia-ollama ollama pull "$model"
 }
 
 start_server() { run server 34 akpedia-server ./mvnw spring-boot:run; }
@@ -68,6 +83,7 @@ for m in "${modules[@]}"; do
   case "$m" in
     server) start_server ;;
     ml)
+      ensure_llm_model || echo "could not pull the LLM model; is akpedia-ollama running?" >&2
       start_ml
       start_worker
       ;;
