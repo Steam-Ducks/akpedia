@@ -13,6 +13,10 @@ trap 'kill -- -$$ 2>/dev/null' EXIT INT TERM
 # from here, so it only has to be set to override this development value.
 export INTERNAL_API_TOKEN="${INTERNAL_API_TOKEN:-akpedia-dev-internal-token}"
 
+# The server sends e-mail through the compose's Mailpit (http://localhost:8025), reached by
+# container name; its own default, localhost, is the dev container itself.
+export MAIL_HOST="${MAIL_HOST:-akpedia-mailpit}"
+
 run() {
   local name="$1" color="$2" dir="$3"
   shift 3

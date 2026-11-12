@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
-docker compose -f akpedia-server/docker-compose.yml up -d db gotenberg redis
+docker compose -f akpedia-server/docker-compose.yml up -d db gotenberg redis mailpit
 
 # Join the db/gotenberg/redis compose network so we can reach them by container
 # name (we're a sibling container to them via the mounted docker.sock, not a
