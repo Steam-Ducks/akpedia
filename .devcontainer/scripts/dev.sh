@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Runs the given modules (server, ml, client) in parallel for local dev.
 # With no arguments, runs all three; `ml` is the API plus the indexing worker.
-# Assumes the db and Redis are already up (started by .devcontainer/entrypoint.sh).
+# Starts the compose services it needs first (db, Redis, Keycloak, nginx, Mailpit, Ollama), so a
+# container that stopped since the dev container started, after Docker restarted, comes back.
 # Ctrl+C stops everything.
 set -uo pipefail
 
@@ -23,6 +24,36 @@ export KEYCLOAK_ADMIN_BASE_URL="${KEYCLOAK_ADMIN_BASE_URL:-http://akpedia-keyclo
 # The server sends e-mail through the compose's Mailpit (http://localhost:8025), reached by
 # container name; its own default, localhost, is the dev container itself.
 export MAIL_HOST="${MAIL_HOST:-akpedia-mailpit}"
+
+# The compose services the modules need. `up -d` leaves the running ones alone and starts the
+# stopped ones; the dev container joins their networks, as .devcontainer/entrypoint.sh does.
+ensure_services() {
+  docker compose -f akpedia-server/docker-compose.yml up -d db gotenberg redis keycloak nginx mailpit ||
+    echo "could not start the server's compose services; is Docker running?" >&2
+  docker compose -f akpedia-ml/docker-compose.yml up -d ollama ||
+    echo "could not start akpedia-ollama" >&2
+  local container network
+  for container in akpedia-db akpedia-ollama; do
+    network="$(docker inspect "$container" --format '{{range $k, $v := .NetworkSettings.Networks}}{{$k}}{{end}}' 2>/dev/null)" || continue
+    docker network connect "$network" akpedia-devcontainer 2>/dev/null || true
+  done
+}
+
+# Waits for Keycloak to be healthy: the server checks every login against it, and the client
+# cannot sign in without it. Gives up after a while rather than hang `akpedia run`.
+wait_for_keycloak() {
+  local status said= tries=0
+  until status="$(docker inspect akpedia-keycloak --format '{{.State.Health.Status}}' 2>/dev/null)" &&
+    [ "$status" = healthy ]; do
+    [ -z "$said" ] && echo "waiting for Keycloak" && said=1
+    tries=$((tries + 1))
+    if [ "$tries" -ge 90 ]; then
+      echo "Keycloak is not healthy (${status:-missing}); see: docker logs akpedia-keycloak" >&2
+      return 1
+    fi
+    sleep 2
+  done
+}
 
 run() {
   local name="$1" color="$2" dir="$3"
@@ -78,6 +109,9 @@ for m in "${modules[@]}"; do
       ;;
   esac
 done
+
+ensure_services
+wait_for_keycloak
 
 for m in "${modules[@]}"; do
   case "$m" in
