@@ -83,17 +83,18 @@ Priority aligns with sprint progression: **High** validates search usability, **
 |----------|--------|--------|--------|-------------------------------------------------------------------------|------------------------|----------------|
 | High     | 1      | Epic 1 | US 1.1 | Search documents in a single place as soon as I open the system         | Standard User          | ✅ Done        |
 | High     | 1      | Epic 1 | US 1.2 | Quickly determine which search result is correct                        | Standard User          | ✅ Done        |
-| Medium   | 2      | Epic 2 | US 2.1 | Avoid reading an entire document to determine its category              | Approver                | ⚪ To Do       |
-| Medium   | 2      | Epic 2 | US 2.2 | View everything pending my review in one place                          | Approver                | ⚪ To Do       |
-| Medium   | 2      | Epic 2 | US 2.3 | Approve documents with confidence, ensuring a reliable database         | Approver                | ⚪ To Do       |
-| Medium   | 2      | Epic 2 | US 2.4 | Share a new document with my colleagues                                 | Standard User          | ⚪ To Do       |
-| Medium   | 2      | Epic 2 | US 2.5 | Know whether my uploaded document is available to colleagues            | Standard User          | ⚪ To Do       |
-| Medium   | 2      | Epic 2 | US 2.6 | Refine my search to find exactly what I need                            | Standard User          | ⚪ To Do       |
-| Low      | 3      | Epic 3 | US 3.1 | Ensure sensitive department documents remain protected                  | All Roles (Employee)   | ⚪ To Do       |
-| Low      | 3      | Epic 3 | US 3.2 | Maintain company compliance regarding employee access data              | Administrator           | ⚪ To Do       |
-| Low      | 3      | Epic 3 | US 3.3 | Define permissions for each employee in the system                      | Administrator           | ⚪ To Do       |
-| Low      | 3      | Epic 3 | US 3.4 | View only documents relevant and permitted for my department            | Standard User          | ⚪ To Do       |
-| Low      | 3      | Epic 3 | US 3.5 | Keep department structures and user details updated                     | Administrator           | ⚪ To Do       |
+| Medium   | 2      | Epic 2 | US 2.1 | Avoid reading an entire document to determine its category              | Approver                | ✅ Done       |
+| Medium   | 2      | Epic 2 | US 2.2 | View everything pending my review in one place                          | Approver                | ✅ Done       |
+| Medium   | 2      | Epic 2 | US 2.3 | Approve documents with confidence, ensuring a reliable database         | Approver                | ✅ Done       |
+| Medium   | 2      | Epic 2 | US 2.4 | Share a new document with my colleagues                                 | Standard User          | ✅ Done       |
+| Medium   | 2      | Epic 2 | US 2.5 | Know whether my uploaded document is available to colleagues            | Standard User          | ✅ Done       |
+| Medium   | 2      | Epic 2 | US 2.6 | Refine my search to find exactly what I need                            | Standard User          | ✅ Done       |
+| Low      | 3      | Epic 3 | US 3.1 | Secure access with login and role-based pages                  | All Roles (Employee)   | ✅ Done       |
+| Low      | 3      | Epic 3 | US 3.2 | Manage employees and their roles              | Administrator           | ✅ Done       |
+| Low      | 3      | Epic 3 | US 3.3 | Control which document labels each department can see                     | Administrator           | ✅ Done       |
+| Low      | 3      | Epic 3 | US 3.4 | Ask a question and be pointed to the right documents           | All Roles (Employee)        | ✅ Done       |
+| Low      | 3      | Epic 3 | US 3.5 | Keep employee consent to the Terms and Conditions up to date                    | Administrator           | ✅ Done       |
+| Low      | 3      | Epic 3 | US 3.5 | Notify employees about a data breach                    | Administrator           | ✅ Done       |
 
 ## Project Demo
 
