@@ -105,6 +105,15 @@ Priority aligns with sprint progression: **High** validates search usability, **
   <p><em>Clique na imagem para assistir à demonstração no YouTube.</em></p>
 </div>
 
+## Manuals
+
+Step-by-step guides written in Portuguese for people with no programming background.
+
+| Manual | What it covers | Download |
+|---|---|---|
+| **Manual de Instalação** | Installing the required programs, downloading Akpedia, starting it and fixing common problems | [PDF](docs/Akpedia%20-%20Manual%20de%20Instala%C3%A7%C3%A3o.pdf) |
+| **Manual do Usuário** | Signing in, searching, asking the AI, uploading and tracking documents, reviewing (Approver) and administration (Admin) | [PDF](docs/Akpedia%20-%20Manual%20do%20Usu%C3%A1rio.pdf) |
+
 ## Tech Stack
 
 <p align="center">
