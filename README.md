@@ -99,7 +99,7 @@ Priority aligns with sprint progression: **High** validates search usability, **
 ## Project Demo
 
 <div align="center">
-  <a href="https://www.youtube.com/watch?v=qHbBRwY2Ly0" target="_blank">
+  <a href="https://www.youtube.com/watch?v=31esMyzS1FY" target="_blank">
     <img src="https://img.youtube.com/vi/qHbBRwY2Ly0/maxresdefault.jpg" alt="Akpedia Demo" width="80%" />
   </a>
   <p><em>Clique na imagem para assistir à demonstração no YouTube.</em></p>
